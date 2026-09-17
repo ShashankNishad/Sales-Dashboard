@@ -1,0 +1,92 @@
+{% extends "base.html" %}
+{% block title %}Collection Dashboard{% endblock %}
+{% block heading %}COLLECTION DASHBOARD{% endblock %}
+
+{% block topbar_actions %}
+<div class="field" style="min-width:220px;">
+  <label for="door-filter">Select Door</label>
+  <select id="door-filter">
+    <option value="ALL">ALL</option>
+  </select>
+</div>
+<div class="field" style="min-width:180px;">
+  <label for="date-from-filter">Date From</label>
+  <input type="date" id="date-from-filter">
+</div>
+<div class="field" style="min-width:180px;">
+  <label for="date-to-filter">Date To</label>
+  <input type="date" id="date-to-filter">
+</div>
+<button class="btn-primary" id="dashboard-apply">Apply / Filter</button>
+{% endblock %}
+
+{% block content %}
+<div class="kpi-grid">
+  <div class="kpi-card accent-target">
+    <div class="kpi-label">Total Target</div>
+    <div class="kpi-value" id="kpi-target">₹ 0</div>
+  </div>
+  <div class="kpi-card accent-collection">
+    <div class="kpi-label">Total Collection</div>
+    <div class="kpi-value" id="kpi-collection">₹ 0</div>
+  </div>
+  <div class="kpi-card accent-os">
+    <div class="kpi-label">Total O/S</div>
+    <div class="kpi-value" id="kpi-os">₹ 0</div>
+  </div>
+  <div class="kpi-card accent-sixty">
+    <div class="kpi-label">Total 60+</div>
+    <div class="kpi-value" id="kpi-sixty">₹ 0</div>
+  </div>
+  <div class="kpi-card accent-amount">
+    <div class="kpi-label">Total Commitment Amount</div>
+    <div class="kpi-value" id="kpi-amount">₹ 0</div>
+  </div>
+</div>
+
+<div class="grid-2">
+  <div class="panel">
+    <div class="panel-header">
+      <div>
+        <h3 class="panel-title">Brand Summary</h3>
+        <div class="panel-subtitle">Target vs. Collection achievement by brand</div>
+      </div>
+    </div>
+    <div class="table-scroll">
+      <table>
+        <thead>
+          <tr><th>Brand</th><th>Target</th><th>Collection</th><th>Achievement</th></tr>
+        </thead>
+        <tbody id="brand-summary-body">
+          <tr><td colspan="4" class="empty-state">Loading...</td></tr>
+        </tbody>
+        <tfoot id="brand-summary-foot"></tfoot>
+      </table>
+    </div>
+  </div>
+
+  <div class="panel">
+    <div class="panel-header">
+      <div>
+        <h3 class="panel-title">Cluster Summary</h3>
+        <div class="panel-subtitle">Total collection by Cluster Name (Target / Collection / Achievement)</div>
+      </div>
+    </div>
+    <div class="table-scroll">
+      <table>
+        <thead>
+          <tr><th>Cluster</th><th>Target</th><th>Collection</th><th>Achievement</th></tr>
+        </thead>
+        <tbody id="cluster-summary-body">
+          <tr><td colspan="4" class="empty-state">Loading...</td></tr>
+        </tbody>
+        <tfoot id="cluster-summary-foot"></tfoot>
+      </table>
+    </div>
+  </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script src="{{ url_for('static', filename='js/dashboard.js') }}"></script>
+{% endblock %}

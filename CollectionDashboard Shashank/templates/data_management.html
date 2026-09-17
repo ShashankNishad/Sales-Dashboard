@@ -1,0 +1,66 @@
+{% extends "base.html" %}
+{% block title %}Data Management{% endblock %}
+{% block heading %}DATA MANAGEMENT{% endblock %}
+
+{% block content %}
+<div class="panel">
+  <div class="panel-header">
+    <div>
+      <h3 class="panel-title">Search Records</h3>
+      <div class="panel-subtitle">Filter, then edit or delete selected rows</div>
+    </div>
+  </div>
+  <div class="filter-bar">
+    <div class="field"><label>From Date</label><input type="date" id="dm-date-from"></div>
+    <div class="field"><label>To Date</label><input type="date" id="dm-date-to"></div>
+    <div class="field"><label>Brand</label><select id="dm-brand"><option value="ALL">ALL</option></select></div>
+    <div class="field"><label>Door</label><select id="dm-door"><option value="ALL">ALL</option></select></div>
+    <div class="field"><label>Cluster</label><select id="dm-cluster"><option value="ALL">ALL</option></select></div>
+    <div class="field"><label>Status</label><select id="dm-status"><option value="ALL">ALL</option></select></div>
+    <button class="btn-primary" id="dm-search-btn">SEARCH</button>
+  </div>
+
+  <div class="panel-header">
+    <div class="muted" id="dm-result-count">No search run yet.</div>
+    <div style="display:flex; gap:10px;">
+      <button class="btn-secondary btn-sm" id="dm-select-all">Select All</button>
+      <button class="btn-danger btn-sm" id="dm-delete-btn" disabled>DELETE SELECTED</button>
+    </div>
+  </div>
+
+  <div class="table-scroll">
+    <table>
+      <thead>
+        <tr>
+          <th class="checkbox-cell"><input type="checkbox" id="dm-header-checkbox"></th>
+          <th>Door</th><th>Brand</th><th>Cluster</th><th>Door Type</th><th>Date</th>
+          <th>Amount</th><th>Status</th><th>O/S</th><th>60+</th><th>Target</th>
+          <th>Reminder Remark</th><th>Commitment Date</th><th>Commitment Amount</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody id="dm-body"><tr><td colspan="14" class="empty-state">Run a search to see records.</td></tr></tbody>
+    </table>
+  </div>
+</div>
+
+<div class="panel">
+  <div class="panel-header">
+    <div>
+      <h3 class="panel-title">Backups</h3>
+      <div class="panel-subtitle">Full data snapshots. An auto-backup is taken before every Excel upload; you can also take one anytime from the sidebar. Re-upload any of these files via "Upload Excel" to recover your data.</div>
+    </div>
+    <button class="btn-secondary btn-sm" id="dm-refresh-backups">Refresh</button>
+  </div>
+  <div class="table-scroll">
+    <table>
+      <thead><tr><th>File</th><th>Created</th><th>Size</th><th>Action</th></tr></thead>
+      <tbody id="dm-backups-body"><tr><td colspan="4" class="empty-state">Loading...</td></tr></tbody>
+    </table>
+  </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script src="{{ url_for('static', filename='js/data_management.js') }}"></script>
+{% endblock %}

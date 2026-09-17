@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>{% block title %}Collection Dashboard{% endblock %}</title>
+<link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+<div class="app-shell">
+  <aside class="sidebar">
+    <div class="brand-mark">
+      <span class="brand-dot"></span>
+      <div>
+        <div class="brand-title">Collection</div>
+        <div class="brand-subtitle">Management System</div>
+      </div>
+    </div>
+    <nav class="nav-links">
+      <a href="{{ url_for('dashboard_page') }}" class="nav-link {% if active=='dashboard' %}active{% endif %}">
+        <span class="nav-icon">&#9632;</span> Dashboard
+      </a>
+      <a href="{{ url_for('details_page') }}" class="nav-link {% if active=='details' %}active{% endif %}">
+        <span class="nav-icon">&#9776;</span> Collection Details
+      </a>
+      <a href="{{ url_for('data_management_page') }}" class="nav-link {% if active=='data' %}active{% endif %}">
+        <span class="nav-icon">&#9881;</span> Data Management
+      </a>
+    </nav>
+    <div class="sidebar-footer">
+      <label class="upload-btn" for="global-upload">Upload Excel
+        <input type="file" id="global-upload" accept=".xlsx,.xls" hidden>
+      </label>
+      <div id="upload-status" class="upload-status"></div>
+      <button type="button" id="global-backup-btn" class="backup-btn">&#128190; Backup Data</button>
+      <button type="button" id="create-html-data-btn" class="backup-btn" style="margin-top:10px;">&#128196; Create HTML with Data</button>
+      <div class="upload-status">Download a full Excel snapshot anytime. Re-upload it to recover if data ever gets corrupted.</div>
+    </div>
+  </aside>
+
+  <main class="main-content">
+    <header class="topbar">
+      <h1 class="page-heading">{% block heading %}{% endblock %}</h1>
+      <div class="topbar-actions">{% block topbar_actions %}{% endblock %}</div>
+    </header>
+    <div class="content-body">
+      {% block content %}{% endblock %}
+    </div>
+  </main>
+</div>
+
+<div id="toast-container" class="toast-container"></div>
+<div id="modal-root"></div>
+
+<script src="{{ url_for('static', filename='js/common.js') }}"></script>
+{% block scripts %}{% endblock %}
+</body>
+</html>

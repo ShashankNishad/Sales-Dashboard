@@ -1,0 +1,133 @@
+{% extends "base.html" %}
+{% block title %}Collection Details{% endblock %}
+{% block heading %}COLLECTION DETAILS &amp; REMINDERS{% endblock %}
+
+{% block content %}
+<div class="kpi-grid">
+  <div class="kpi-card accent-target"><div class="kpi-label">Total Target</div><div class="kpi-value" id="kpi-target">₹ 0</div></div>
+  <div class="kpi-card accent-collection"><div class="kpi-label">Total Collection</div><div class="kpi-value" id="kpi-collection">₹ 0</div></div>
+  <div class="kpi-card accent-os"><div class="kpi-label">Total O/S</div><div class="kpi-value" id="kpi-os">₹ 0</div></div>
+  <div class="kpi-card accent-sixty"><div class="kpi-label">Total 60+</div><div class="kpi-value" id="kpi-sixty">₹ 0</div></div>
+  <div class="kpi-card accent-amount"><div class="kpi-label">Total Amount</div><div class="kpi-value" id="kpi-amount">₹ 0</div></div>
+</div>
+
+<div class="panel">
+  <div class="panel-header">
+    <div>
+      <h3 class="panel-title">Door-wise Brand Summary</h3>
+      <div class="panel-subtitle">Select a door to see brand-level achievement</div>
+    </div>
+    <div class="field" style="min-width:260px;">
+      <label for="details-door-select">Select Door</label>
+      <select id="details-door-select"><option value="">-- Choose a door --</option></select>
+    </div>
+  </div>
+  <div class="table-scroll">
+    <table>
+      <thead><tr><th>Brand</th><th>Target</th><th>Collection</th><th>Achievement</th><th>Received</th><th>Pending</th></tr></thead>
+      <tbody id="door-brand-body"><tr><td colspan="6" class="empty-state">Select a door above.</td></tr></tbody>
+      <tfoot id="door-brand-foot"></tfoot>
+    </table>
+  </div>
+</div>
+
+<div class="panel">
+  <div class="panel-header">
+    <div>
+      <h3 class="panel-title">Detailed Payment Records</h3>
+      <div class="panel-subtitle">Search, filter, sort and manage reminders</div>
+    </div>
+  </div>
+  <div class="filter-bar">
+    <div class="field"><label>Search</label><input type="search" id="payments-search" placeholder="Door, brand, status, remark..."></div>
+    <div class="field"><label>Door</label><select id="payments-door"><option value="ALL">ALL</option></select></div>
+    <div class="field"><label>Brand</label><select id="payments-brand"><option value="ALL">ALL</option></select></div>
+    <div class="field"><label>Status</label><select id="payments-status"><option value="ALL">ALL</option></select></div>
+    <div class="field"><label>Date From</label><input type="date" id="payments-date-from"></div>
+    <div class="field"><label>Date To</label><input type="date" id="payments-date-to"></div>
+    <button class="btn-primary" id="payments-apply">Apply</button>
+  </div>
+  <div class="summary-strip" style="margin-top: -4px; margin-bottom: 14px;">
+    <span>Total Collection</span>
+    <span id="grouped-total-collection">₹ 0</span>
+  </div>
+  <div class="table-scroll">
+    <table id="payments-table">
+      <thead>
+        <tr>
+          <th>Brand</th>
+          <th>Door</th>
+          <th>Cluster</th>
+          <th>Date Range</th>
+          <th>Collection</th>
+          <th>View Details</th>
+        </tr>
+      </thead>
+      <tbody id="payments-body"><tr><td colspan="6" class="empty-state">Loading...</td></tr></tbody>
+    </table>
+  </div>
+  <div class="pagination">
+    <span id="payments-page-info" class="muted"></span>
+    <button class="btn-secondary btn-sm" id="payments-prev">Prev</button>
+    <button class="btn-secondary btn-sm" id="payments-next">Next</button>
+  </div>
+</div>
+
+<div class="grid-2">
+  <div class="panel">
+    <div class="panel-header">
+      <div>
+        <h3 class="panel-title">Commitment Date Report</h3>
+        <div class="panel-subtitle">Expected payments within a date range</div>
+      </div>
+    </div>
+    <div class="filter-bar">
+      <div class="field"><label>From Date</label><input type="date" id="commit-from"></div>
+      <div class="field"><label>To Date</label><input type="date" id="commit-to"></div>
+      <button class="btn-primary" id="commit-apply">Show Report</button>
+    </div>
+    <div class="kpi-card accent-target" style="max-width:260px;margin-bottom:14px;">
+      <div class="kpi-label">Total Commitment Amount</div>
+      <div class="kpi-value" id="commit-total">₹ 0</div>
+    </div>
+    <div class="panel-subtitle" style="margin-bottom:6px;">By Brand — kis party ne kitna commitment kiya hai</div>
+    <div class="table-scroll" style="margin-bottom:16px;">
+      <table>
+        <thead><tr><th>Brand</th><th>Total Commitment</th></tr></thead>
+        <tbody id="commit-brand-body"><tr><td colspan="2" class="empty-state">Choose a date range.</td></tr></tbody>
+      </table>
+    </div>
+    <div class="table-scroll">
+      <table>
+        <thead><tr><th>Brand</th><th>Door</th><th>Pending</th><th>Commit Amt</th><th>Commit Date</th><th>Status</th><th>Action</th></tr></thead>
+        <tbody id="commit-body"><tr><td colspan="7" class="empty-state">Choose a date range.</td></tr></tbody>
+      </table>
+    </div>
+    <div class="muted" style="margin-top:8px;font-size:12px;">If a commitment slips, click Update to push the date/amount — it updates the same record, so it will reappear correctly next time you run this report.</div>
+  </div>
+
+  <div class="panel">
+    <div class="panel-header">
+      <div>
+        <h3 class="panel-title">Reminder Date Report</h3>
+        <div class="panel-subtitle">Who the team contacted in a date range</div>
+      </div>
+    </div>
+    <div class="filter-bar">
+      <div class="field"><label>From Reminder Date</label><input type="date" id="rem-from"></div>
+      <div class="field"><label>To Reminder Date</label><input type="date" id="rem-to"></div>
+      <button class="btn-primary" id="rem-apply">Show Report</button>
+    </div>
+    <div class="table-scroll">
+      <table>
+        <thead><tr><th>Brand</th><th>Door</th><th>Remark</th><th>Reminder Date</th><th>Commit Date</th><th>Action</th></tr></thead>
+        <tbody id="rem-body"><tr><td colspan="6" class="empty-state">Choose a date range.</td></tr></tbody>
+      </table>
+    </div>
+  </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script src="{{ url_for('static', filename='js/details.js') }}"></script>
+{% endblock %}
