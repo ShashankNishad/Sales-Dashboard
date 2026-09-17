@@ -722,3 +722,34 @@ werkzeug.exceptions.NotFound: 404 Not Found: The requested URL was not found on 
 2026-09-08 11:57:38,378 [INFO] werkzeug: 127.0.0.1 - - [08/Sep/2026 11:57:38] "GET /api/details/grouped-payments HTTP/1.1" 200 -
 2026-09-08 11:57:38,394 [INFO] werkzeug: 127.0.0.1 - - [08/Sep/2026 11:57:38] "GET /api/dashboard/kpis HTTP/1.1" 200 -
 2026-09-08 11:57:41,669 [INFO] werkzeug: 127.0.0.1 - - [08/Sep/2026 11:57:41] "GET /api/details/door-brand-summary?door=A%20AND%20A%20LIFESTYLE%20-%20SANJOULI HTTP/1.1" 200 -
+2026-09-17 17:19:35,233 [INFO] werkzeug: [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.20.2:5000
+2026-09-17 17:19:35,236 [INFO] werkzeug: [33mPress CTRL+C to quit[0m
+2026-09-17 17:19:36,422 [INFO] werkzeug: 127.0.0.1 - - [17/Sep/2026 17:19:36] "GET / HTTP/1.1" 200 -
+2026-09-17 17:19:36,670 [INFO] werkzeug: 127.0.0.1 - - [17/Sep/2026 17:19:36] "GET /static/css/style.css HTTP/1.1" 200 -
+2026-09-17 17:19:36,676 [INFO] werkzeug: 127.0.0.1 - - [17/Sep/2026 17:19:36] "GET /static/js/common.js HTTP/1.1" 200 -
+2026-09-17 17:19:36,688 [INFO] werkzeug: 127.0.0.1 - - [17/Sep/2026 17:19:36] "GET /static/js/dashboard.js HTTP/1.1" 200 -
+2026-09-17 17:19:36,776 [INFO] werkzeug: 127.0.0.1 - - [17/Sep/2026 17:19:36] "GET /api/doors HTTP/1.1" 200 -
+2026-09-17 17:19:36,796 [INFO] werkzeug: 127.0.0.1 - - [17/Sep/2026 17:19:36] "GET /api/dashboard/kpis HTTP/1.1" 200 -
+2026-09-17 17:19:36,804 [ERROR] app: Unhandled error: 404 Not Found: The requested URL was not found on the server. If you entered the URL manually please check your spelling and try again.
+Traceback (most recent call last):
+  File "C:\Users\sanje\AppData\Local\Programs\Python\Python311\Lib\site-packages\flask\app.py", line 880, in full_dispatch_request
+    rv = self.dispatch_request()
+         ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sanje\AppData\Local\Programs\Python\Python311\Lib\site-packages\flask\app.py", line 854, in dispatch_request
+    self.raise_routing_exception(req)
+  File "C:\Users\sanje\AppData\Local\Programs\Python\Python311\Lib\site-packages\flask\app.py", line 463, in raise_routing_exception
+    raise request.routing_exception  # type: ignore[misc]
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sanje\AppData\Local\Programs\Python\Python311\Lib\site-packages\flask\ctx.py", line 362, in match_request
+    result = self.url_adapter.match(return_rule=True)  # type: ignore
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sanje\AppData\Local\Programs\Python\Python311\Lib\site-packages\werkzeug\routing\map.py", line 629, in match
+    raise NotFound() from None
+werkzeug.exceptions.NotFound: 404 Not Found: The requested URL was not found on the server. If you entered the URL manually please check your spelling and try again.
+
+2026-09-17 17:19:36,805 [INFO] werkzeug: 127.0.0.1 - - [17/Sep/2026 17:19:36] "GET /api/dashboard/brand-summary HTTP/1.1" 200 -
+2026-09-17 17:19:36,805 [INFO] werkzeug: 127.0.0.1 - - [17/Sep/2026 17:19:36] "[35m[1mGET /favicon.ico HTTP/1.1[0m" 500 -
+2026-09-17 17:19:36,810 [INFO] werkzeug: 127.0.0.1 - - [17/Sep/2026 17:19:36] "GET /api/dashboard/cluster-summary HTTP/1.1" 200 -
